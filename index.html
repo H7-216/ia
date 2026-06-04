@@ -35,79 +35,36 @@
         font-family: "Inter", system-ui, sans-serif;
       }
       @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(12px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(12px); }
+        to   { opacity: 1; transform: translateY(0); }
       }
-      .animate-fade-in-up {
-        animation: fadeInUp 0.45s ease-out;
-      }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-      .spin {
-        animation: spin 1s linear infinite;
-      }
+      .animate-fade-in-up { animation: fadeInUp 0.45s ease-out; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .spin { animation: spin 1s linear infinite; }
       @keyframes bounce {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-12px);
-        }
+        0%, 100% { transform: translateY(0); }
+        50%       { transform: translateY(-12px); }
       }
-      .bounce {
-        animation: bounce 1.2s ease-in-out infinite;
-      }
+      .bounce { animation: bounce 1.2s ease-in-out infinite; }
       .gauge-circle {
-        transition:
-          stroke-dashoffset 1s ease-out,
-          stroke 0.4s ease-out;
+        transition: stroke-dashoffset 1s ease-out, stroke 0.4s ease-out;
       }
-      details > summary {
-        list-style: none;
-        cursor: pointer;
-      }
-      details > summary::-webkit-details-marker {
-        display: none;
-      }
-      details[open] > summary .chevron {
-        transform: rotate(180deg);
-      }
-      .chevron {
-        transition: transform 0.2s ease;
-      }
+      details > summary { list-style: none; cursor: pointer; }
+      details > summary::-webkit-details-marker { display: none; }
+      details[open] > summary .chevron { transform: rotate(180deg); }
+      .chevron { transition: transform 0.2s ease; }
     </style>
   </head>
   <body class="bg-slate-50 text-slate-900">
+
     <!-- Drop overlay -->
     <div
       id="drop-overlay"
       class="fixed inset-0 z-50 bg-blue-600/90 backdrop-blur-sm hidden flex-col items-center justify-center text-white"
     >
-      <div
-        class="border-4 border-dashed border-white/70 rounded-3xl p-16 flex flex-col items-center"
-      >
-        <svg
-          class="w-24 h-24 mb-6 bounce"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-          />
+      <div class="border-4 border-dashed border-white/70 rounded-3xl p-16 flex flex-col items-center">
+        <svg class="w-24 h-24 mb-6 bounce" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
         </svg>
         <h2 class="text-4xl font-black tracking-tight mb-2">Déposez votre document ici</h2>
         <p class="text-blue-100 text-lg">PDF, Word (.docx, .doc) ou texte (.txt)</p>
@@ -115,40 +72,21 @@
     </div>
 
     <!-- Header -->
-    <header
-      class="border-b border-slate-200 bg-white py-4 px-6 flex items-center justify-between sticky top-0 z-10 shadow-sm"
-    >
+    <header class="border-b border-slate-200 bg-white py-4 px-6 flex items-center justify-between sticky top-0 z-10 shadow-sm">
       <div class="flex items-center gap-3">
-        <div
-          class="w-8 h-8 bg-slate-900 text-white font-mono font-bold flex items-center justify-center rounded-sm text-sm"
-        >
-          D
-        </div>
+        <div class="w-8 h-8 bg-slate-900 text-white font-mono font-bold flex items-center justify-center rounded-sm text-sm">D</div>
         <h1 class="font-bold tracking-tight text-xl text-slate-900">DétectAI</h1>
       </div>
       <div class="flex items-center gap-2">
-        <span
-          id="llm-badge"
-          class="hidden text-xs font-mono font-medium px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full border border-blue-200"
-        >
+        <span id="llm-badge" class="hidden text-xs font-mono font-medium px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full border border-blue-200">
           Claude activé
         </span>
         <button
           id="settings-btn"
           class="text-xs font-mono font-medium px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-full border border-slate-200 transition-colors flex items-center gap-1.5"
         >
-          <svg
-            class="w-3.5 h-3.5"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z"
-            />
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z" />
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
           Paramètres
@@ -161,54 +99,33 @@
       id="settings-modal"
       class="fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4"
     >
-      <div
-        class="bg-white rounded-xl shadow-xl max-w-lg w-full p-6 animate-fade-in-up"
-        onclick="event.stopPropagation()"
-      >
+      <div class="bg-white rounded-xl shadow-xl max-w-lg w-full p-6 animate-fade-in-up" onclick="event.stopPropagation()">
         <h3 class="text-xl font-black text-slate-900 mb-2">Paramètres d'analyse</h3>
         <p class="text-sm text-slate-600 mb-5">
-          Pour activer l'analyse approfondie par Claude (Anthropic), saisissez votre clé API
-          personnelle. Elle est stockée uniquement dans votre navigateur, jamais envoyée ailleurs
-          qu'à api.anthropic.com.
+          Collez l'URL de votre API Replit pour activer l'analyse approfondie par Claude. Votre URL est stockée uniquement dans votre navigateur.
         </p>
-        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2"
-          >Clé API Anthropic (optionnelle)</label
-        >
+
+        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">URL de l'API Claude (Replit)</label>
         <input
-          id="api-key-input"
-          type="password"
-          placeholder="sk-ant-..."
+          id="api-url-input"
+          type="url"
+          placeholder="https://xxxx.replit.dev/api/anthropic/analyze"
           class="w-full px-3 py-2 border border-slate-300 rounded-md font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <p class="text-xs text-slate-500 mt-2">
-          Sans clé, l'application fonctionne en mode <strong>heuristiques statistiques seules</strong>.
-          Obtenez une clé sur
-          <a
-            href="https://console.anthropic.com/settings/keys"
-            target="_blank"
-            rel="noopener"
-            class="text-blue-600 underline"
-            >console.anthropic.com</a
-          >.
+          Obtenez cette URL depuis votre projet Replit. Sans URL, l'application fonctionne en mode
+          <strong>heuristiques statistiques seules</strong>.
         </p>
+
         <div class="flex gap-2 mt-6">
-          <button
-            id="settings-clear"
-            class="px-4 py-2 text-sm font-medium text-rose-600 hover:bg-rose-50 rounded-md"
-          >
-            Supprimer la clé
+          <button id="settings-clear" class="px-4 py-2 text-sm font-medium text-rose-600 hover:bg-rose-50 rounded-md">
+            Effacer l'URL
           </button>
           <div class="flex-1"></div>
-          <button
-            id="settings-cancel"
-            class="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-md"
-          >
+          <button id="settings-cancel" class="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-md">
             Annuler
           </button>
-          <button
-            id="settings-save"
-            class="px-4 py-2 text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-md"
-          >
+          <button id="settings-save" class="px-4 py-2 text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-md">
             Enregistrer
           </button>
         </div>
@@ -219,56 +136,33 @@
       <div class="mb-10 max-w-2xl">
         <h2 class="text-4xl font-black tracking-tight mb-3">Analyseur de documents</h2>
         <p class="text-slate-600 text-lg leading-relaxed">
-          Déposez un PDF, un fichier Word ou collez votre texte. L'analyse stylométrique démarre
-          automatiquement.
+          Déposez un PDF, un fichier Word ou collez votre texte. L'analyse stylométrique démarre automatiquement.
         </p>
       </div>
 
       <div id="app-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div class="lg:col-span-2 space-y-6">
+
           <!-- Dropzone -->
           <div
             id="dropzone"
             class="cursor-pointer bg-white border-2 border-dashed border-slate-300 hover:border-blue-500 hover:bg-blue-50/40 transition-colors rounded-xl p-12 flex flex-col items-center justify-center text-center shadow-sm"
           >
-            <div
-              class="w-20 h-20 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-5 shadow-inner"
-            >
-              <svg
-                class="w-10 h-10"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-                />
+            <div class="w-20 h-20 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-5 shadow-inner">
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
               </svg>
             </div>
             <h3 class="text-2xl font-black text-slate-900 mb-2">Déposez votre document ici</h3>
             <p class="text-slate-600 mb-6 max-w-md">
-              Glissez-déposez un fichier dans cette zone, ou cliquez pour parcourir. L'analyse
-              démarre automatiquement.
+              Glissez-déposez un fichier dans cette zone, ou cliquez pour parcourir. L'analyse démarre automatiquement.
             </p>
             <button
               id="browse-btn"
               class="font-bold tracking-wide h-12 px-6 shadow-sm bg-slate-900 hover:bg-slate-800 text-white rounded-md flex items-center"
             >
-              <svg
-                class="w-5 h-5 mr-2"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               Choisir un fichier
             </button>
@@ -286,51 +180,21 @@
             />
           </div>
 
-          <!-- File loaded card (hidden by default) -->
-          <div
-            id="file-card"
-            class="hidden bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden"
-          >
+          <!-- File loaded card -->
+          <div id="file-card" class="hidden bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
             <div class="bg-slate-50 border-b border-slate-200 p-4 flex justify-between items-center">
-              <span class="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider"
-                >Document chargé</span
-              >
-              <button
-                id="remove-file"
-                class="h-7 text-xs text-rose-600 hover:text-rose-700 hover:bg-rose-50 px-2 rounded flex items-center font-medium"
-              >
-                <svg
-                  class="w-3.5 h-3.5 mr-1.5"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M1 7h22M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3"
-                  />
+              <span class="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">Document chargé</span>
+              <button id="remove-file" class="h-7 text-xs text-rose-600 hover:text-rose-700 hover:bg-rose-50 px-2 rounded flex items-center font-medium">
+                <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M1 7h22M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3" />
                 </svg>
                 Retirer
               </button>
             </div>
             <div class="p-6 border-b border-slate-100 flex items-center gap-4 bg-slate-50/50">
-              <div
-                class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-sm border border-slate-200 text-blue-600"
-              >
-                <svg
-                  class="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
-                  />
+              <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-sm border border-slate-200 text-blue-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                 </svg>
               </div>
               <div class="min-w-0">
@@ -339,17 +203,9 @@
               </div>
             </div>
             <details class="border-b border-slate-100">
-              <summary
-                class="px-6 py-3 hover:bg-slate-50 text-sm font-medium text-slate-600 flex justify-between items-center"
-              >
+              <summary class="px-6 py-3 hover:bg-slate-50 text-sm font-medium text-slate-600 flex justify-between items-center">
                 <span>Voir le texte extrait</span>
-                <svg
-                  class="chevron w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                >
+                <svg class="chevron w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               </summary>
@@ -361,36 +217,18 @@
           </div>
 
           <!-- Working state -->
-          <div
-            id="working"
-            class="hidden bg-white border border-blue-200 rounded-xl p-8 flex-col items-center text-center shadow-sm"
-          >
-            <svg
-              class="w-10 h-10 text-blue-600 spin mb-4"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-              />
+          <div id="working" class="hidden bg-white border border-blue-200 rounded-xl p-8 flex-col items-center text-center shadow-sm">
+            <svg class="w-10 h-10 text-blue-600 spin mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
             <h4 class="font-bold text-slate-900 text-lg mb-1">Analyse en cours</h4>
             <p id="working-msg" class="text-slate-500 font-mono text-sm">Préparation...</p>
           </div>
 
           <!-- Manual paste card -->
-          <div
-            id="paste-card"
-            class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden"
-          >
+          <div id="paste-card" class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
             <div class="bg-slate-50 border-b border-slate-200 p-4">
-              <span class="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider"
-                >Ou collez votre texte</span
-              >
+              <span class="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">Ou collez votre texte</span>
             </div>
             <textarea
               id="paste-area"
@@ -410,22 +248,9 @@
           </div>
 
           <!-- Error -->
-          <div
-            id="error-box"
-            class="hidden bg-rose-50 border border-rose-200 text-rose-700 text-sm p-4 rounded-lg items-start gap-3 shadow-sm"
-          >
-            <svg
-              class="w-5 h-5 mt-0.5 shrink-0"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-              />
+          <div id="error-box" class="hidden bg-rose-50 border border-rose-200 text-rose-700 text-sm p-4 rounded-lg items-start gap-3 shadow-sm">
+            <svg class="w-5 h-5 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
             <div id="error-msg" class="font-medium"></div>
           </div>
@@ -435,41 +260,29 @@
         <div class="space-y-6">
           <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-6">
             <div class="flex items-center gap-2 mb-4">
-              <svg
-                class="w-4 h-4 text-slate-400"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <h3 class="font-bold text-sm uppercase tracking-wider text-slate-900">
-                Avis d'honnêteté
-              </h3>
+              <h3 class="font-bold text-sm uppercase tracking-wider text-slate-900">Avis d'honnêteté</h3>
             </div>
             <div class="text-sm space-y-4 text-slate-600 leading-relaxed">
               <p>
-                DétectAI combine des <strong>heuristiques statistiques</strong> (variance des
-                phrases, richesse lexicale, ratio de connecteurs logiques) avec une
-                <strong>évaluation par modèle de langage</strong> (optionnelle, via votre clé
-                Claude) pour estimer la probabilité d'une génération artificielle.
+                DétectAI combine des <strong>heuristiques statistiques</strong> (variance des phrases,
+                richesse lexicale, ratio de connecteurs logiques) avec une
+                <strong>évaluation par modèle de langage</strong> (via l'API Replit configurée dans les paramètres)
+                pour estimer la probabilité d'une génération artificielle.
               </p>
               <div class="bg-amber-50/50 border border-amber-100 p-4 rounded-md text-amber-900">
-                Aucun détecteur d'IA n'est fiable à 100%. Les résultats doivent être considérés
-                comme des <strong>indicateurs</strong> et non comme des preuves irréfutables. Les
-                textes courts et les traductions peuvent générer des faux positifs.
+                Aucun détecteur d'IA n'est fiable à 100%. Les résultats doivent être considérés comme des
+                <strong>indicateurs</strong> et non comme des preuves irréfutables. Les textes courts et les
+                traductions peuvent générer des faux positifs.
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Results panel (hidden until analysis is done) -->
+      <!-- Results panel -->
       <div id="results-wrapper" class="hidden space-y-8 animate-fade-in-up"></div>
     </main>
 
@@ -485,16 +298,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js"></script>
 
     <script>
+      // ============================================================
+      //  CONFIGURATION — collez votre URL Replit ici
+      //  Exemple : "https://xxxx.replit.dev/api/anthropic/analyze"
+      //  Laissez vide ("") pour fonctionner sans Claude (heuristiques seules)
+      // ============================================================
+      const DEFAULT_CLAUDE_API_URL = "https://a06869f6-42dc-4378-88aa-cb06787e8608-00-38yj81rgfpeny.spock.replit.dev/api/anthropic/analyze";
+      // ============================================================
+
       // ===== State =====
       const state = {
         text: "",
         file: null,
         isWorking: false,
         result: null,
-        apiKey: localStorage.getItem("detectai_anthropic_key") || "",
+        apiUrl: localStorage.getItem("detectai_api_url") || DEFAULT_CLAUDE_API_URL,
       };
 
-      // ===== Heuristics (ported from textAnalyzer.ts) =====
+      // ===== Heuristics =====
       const EN_TRANSITIONS = new Set([
         "however","furthermore","moreover","additionally","consequently",
         "therefore","thus","hence","indeed","notably","specifically",
@@ -540,70 +361,51 @@
         const wordCount = words.length;
         const sentenceCount = Math.max(sentences.length, 1);
 
-        const sentenceLengths = sentences.map(
-          (s) => (s.match(/[\p{L}\p{N}']+/gu) || []).length,
-        );
+        const sentenceLengths = sentences.map((s) => (s.match(/[\p{L}\p{N}']+/gu) || []).length);
         const avgSentenceLength = mean(sentenceLengths);
         const sentenceLengthVariance = variance(sentenceLengths);
-        const burstinessRaw =
-          avgSentenceLength > 0
-            ? Math.sqrt(sentenceLengthVariance) / avgSentenceLength
-            : 0;
+        const burstinessRaw = avgSentenceLength > 0 ? Math.sqrt(sentenceLengthVariance) / avgSentenceLength : 0;
         const burstinessScore = clamp(burstinessRaw * 130, 0, 100);
 
         const uniqueWords = new Set(words);
         const vocabularyRichness = wordCount > 0 ? uniqueWords.size / wordCount : 0;
         const avgWordLength = mean(words.map((w) => w.length));
-        const rareWordRatio =
-          wordCount > 0 ? words.filter((w) => w.length >= 9).length / wordCount : 0;
-        const transitionWordRatio =
-          wordCount > 0
-            ? words.filter((w) => ALL_TRANSITIONS.has(w)).length / wordCount
-            : 0;
+        const rareWordRatio = wordCount > 0 ? words.filter((w) => w.length >= 9).length / wordCount : 0;
+        const transitionWordRatio = wordCount > 0
+          ? words.filter((w) => ALL_TRANSITIONS.has(w)).length / wordCount
+          : 0;
 
         const bigrams = [];
-        for (let i = 0; i < words.length - 1; i++) {
-          bigrams.push(words[i] + " " + words[i + 1]);
-        }
-        const uniqueBigramRatio =
-          bigrams.length > 0 ? new Set(bigrams).size / bigrams.length : 0;
+        for (let i = 0; i < words.length - 1; i++) bigrams.push(words[i] + " " + words[i + 1]);
+        const uniqueBigramRatio = bigrams.length > 0 ? new Set(bigrams).size / bigrams.length : 0;
         const perplexityProxy = clamp(uniqueBigramRatio * 100, 0, 100);
 
         const burstinessAi = 100 - burstinessScore;
         const vocabAi =
-          vocabularyRichness < 0.35
-            ? 75
-            : vocabularyRichness < 0.45
-              ? 60
-              : vocabularyRichness > 0.75
-                ? 25
-                : 45;
+          vocabularyRichness < 0.35 ? 75
+          : vocabularyRichness < 0.45 ? 60
+          : vocabularyRichness > 0.75 ? 25
+          : 45;
         const transitionAi =
-          transitionWordRatio > 0.04
-            ? 85
-            : transitionWordRatio > 0.025
-              ? 70
-              : transitionWordRatio > 0.012
-                ? 55
-                : 30;
+          transitionWordRatio > 0.04 ? 85
+          : transitionWordRatio > 0.025 ? 70
+          : transitionWordRatio > 0.012 ? 55
+          : 30;
         const perplexityAi = 100 - perplexityProxy;
         const sentLenAi =
-          avgSentenceLength >= 16 && avgSentenceLength <= 26
-            ? 65
-            : avgSentenceLength >= 12 && avgSentenceLength <= 30
-              ? 50
-              : 35;
+          avgSentenceLength >= 16 && avgSentenceLength <= 26 ? 65
+          : avgSentenceLength >= 12 && avgSentenceLength <= 30 ? 50
+          : 35;
         const wordLenAi = avgWordLength >= 4.8 && avgWordLength <= 5.6 ? 60 : 45;
 
         const aiLikenessScore = clamp(
-          burstinessAi * 0.32 +
-            vocabAi * 0.14 +
-            transitionAi * 0.16 +
-            perplexityAi * 0.22 +
-            sentLenAi * 0.1 +
-            wordLenAi * 0.06,
-          0,
-          100,
+          burstinessAi   * 0.32 +
+          vocabAi        * 0.14 +
+          transitionAi   * 0.16 +
+          perplexityAi   * 0.22 +
+          sentLenAi      * 0.10 +
+          wordLenAi      * 0.06,
+          0, 100,
         );
 
         return {
@@ -625,14 +427,13 @@
 
       // ===== Verdict logic =====
       function computeVerdict(score) {
-        if (score >= 72) return { verdict: "ai", verdictLabel: "Écrit par une IA" };
-        if (score >= 55) return { verdict: "mixed", verdictLabel: "Texte probablement mixte" };
+        if (score >= 72) return { verdict: "ai",        verdictLabel: "Écrit par une IA" };
+        if (score >= 55) return { verdict: "mixed",     verdictLabel: "Texte probablement mixte" };
         if (score >= 38) return { verdict: "uncertain", verdictLabel: "Résultat incertain" };
-        return { verdict: "human", verdictLabel: "Écrit par un humain" };
+        return              { verdict: "human",     verdictLabel: "Écrit par un humain" };
       }
       function computeConfidence(heuristicScore, llmScore, textLength, llmAvailable) {
         if (!llmAvailable) {
-          // No LLM, confidence depends only on text length
           const lengthFactor =
             textLength >= 2000 ? 80 : textLength >= 800 ? 65 : textLength >= 300 ? 50 : 35;
           return Math.round(lengthFactor);
@@ -640,8 +441,7 @@
         const agreement = 100 - Math.abs(heuristicScore - llmScore);
         const lengthFactor =
           textLength >= 2000 ? 100 : textLength >= 800 ? 80 : textLength >= 300 ? 60 : 40;
-        const final = agreement * 0.6 + lengthFactor * 0.4;
-        return Math.round(Math.max(20, Math.min(99, final)));
+        return Math.round(Math.max(20, Math.min(99, agreement * 0.6 + lengthFactor * 0.4)));
       }
       function buildSummary(verdict, aiProbability, reasoning) {
         const intro =
@@ -655,116 +455,39 @@
         return intro + " " + reasoning;
       }
 
-      // ===== LLM (optional) =====
-      const SYSTEM_PROMPT = `Tu es un expert en détection de texte généré par IA. Tu analyses des extraits de documents et tu détermines, sur la base d'indices linguistiques, stylistiques et structurels concrets, la probabilité que le texte ait été produit par un grand modèle de langage (GPT-4, Claude, Gemini, Mistral, Llama, etc.).
-
-Indices typiques d'un texte généré par IA :
-- Phrases d'une régularité rythmique inhabituelle (peu de variations de longueur).
-- Vocabulaire « trop propre », formules consensuelles, absence de fautes de frappe.
-- Connecteurs logiques très fréquents (« en effet », « par ailleurs », « il convient de noter », « furthermore », « however »).
-- Tournures génériques, listes équilibrées, parallélismes parfaits.
-- Absence de digressions, d'opinions tranchées, d'anecdotes personnelles, de références culturelles précises.
-- Vocabulaire « tapis-rouge » (paysage, écosystème, navigation, robuste, exploiter, complexe, nuancé, tapestry, delve, intricate).
-- Tendance à conclure chaque paragraphe par une synthèse.
-
-Indices typiques d'un texte humain :
-- Variations brusques de longueur de phrases.
-- Fautes de frappe, oublis, formulations bancales mais expressives.
-- Opinions personnelles, anecdotes, détails idiosyncrasiques.
-- Digressions, parenthèses, ruptures de ton.
-- Vocabulaire familier ou idiolecte (mots fétiches, expressions inhabituelles).
-
-IMPORTANT :
-- Réponds UNIQUEMENT par un objet JSON valide, sans bloc de code, sans texte autour.
-- "aiProbability" est un nombre entre 0 et 100.
-- "reasoning" est une analyse en français de 3 à 5 phrases qui justifie ta note en citant des observations concrètes du texte.
-- "flaggedPassages" est un tableau de 0 à 5 passages courts (max 200 caractères) extraits littéralement du texte qui semblent caractéristiques d'une IA, avec une explication courte ("reason") en français.
-- Sois mesuré et calibré. Réserve les notes >85 aux textes avec plusieurs marqueurs IA très clairs.
-
-Format strict :
-{
-  "aiProbability": <nombre>,
-  "reasoning": "<analyse>",
-  "flaggedPassages": [{"text": "<extrait>", "reason": "<raison>"}]
-}`;
-
-      const MAX_LLM_INPUT = 18000;
-      function extractJson(text) {
-        if (!text) return {};
-        const trimmed = text.trim();
-        try {
-          return JSON.parse(trimmed);
-        } catch {
-          const start = trimmed.indexOf("{");
-          const end = trimmed.lastIndexOf("}");
-          if (start !== -1 && end !== -1 && end > start) {
-            try {
-              return JSON.parse(trimmed.slice(start, end + 1));
-            } catch {
-              return {};
-            }
-          }
-          return {};
-        }
-      }
-
-      async function analyzeWithLlm(text, apiKey) {
-        const truncated =
-          text.length > MAX_LLM_INPUT
-            ? text.slice(0, MAX_LLM_INPUT) + "\n\n[... texte tronqué pour l'analyse ...]"
-            : text;
-
-        const response = await fetch("https://api.anthropic.com/v1/messages", {
+      // ===== LLM via API Replit =====
+      async function analyzeWithReplit(text, apiUrl) {
+        const response = await fetch(apiUrl, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-api-key": apiKey,
-            "anthropic-version": "2023-06-01",
-            "anthropic-dangerous-direct-browser-access": "true",
-          },
-          body: JSON.stringify({
-            model: "claude-sonnet-4-5",
-            max_tokens: 4096,
-            system: SYSTEM_PROMPT,
-            messages: [
-              {
-                role: "user",
-                content:
-                  "Analyse le texte suivant et renvoie ton verdict au format JSON demandé.\n\n--- TEXTE À ANALYSER ---\n" +
-                  truncated +
-                  "\n--- FIN DU TEXTE ---",
-              },
-            ],
-          }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text }),
         });
 
         if (!response.ok) {
           const errText = await response.text();
-          throw new Error("Erreur API Anthropic (" + response.status + "): " + errText.slice(0, 200));
+          throw new Error("Erreur API (" + response.status + "): " + errText.slice(0, 200));
         }
 
         const data = await response.json();
-        const block = data.content && data.content[0];
-        const raw = block && block.type === "text" ? block.text : "";
-        const parsed = extractJson(raw);
 
-        const aiProbability = (() => {
-          const n = Number(parsed.aiProbability);
-          return Number.isFinite(n) ? Math.max(0, Math.min(100, n)) : 50;
-        })();
+        // data = { score, label, reasoning, indicators[] }
+        const aiProbability = Number.isFinite(data.score)
+          ? Math.max(0, Math.min(100, data.score))
+          : 50;
+
         const reasoning =
-          typeof parsed.reasoning === "string" && parsed.reasoning.trim()
-            ? parsed.reasoning.trim()
+          typeof data.reasoning === "string" && data.reasoning.trim()
+            ? data.reasoning.trim()
             : "Le modèle d'analyse n'a pas fourni de justification détaillée.";
-        const rawFlagged = Array.isArray(parsed.flaggedPassages) ? parsed.flaggedPassages : [];
-        const flaggedPassages = rawFlagged
-          .filter((p) => p && typeof p === "object")
-          .slice(0, 6)
-          .map((p) => ({
-            text: typeof p.text === "string" ? p.text.trim().slice(0, 280) : "",
-            reason: typeof p.reason === "string" ? p.reason.trim().slice(0, 200) : "",
-          }))
-          .filter((p) => p.text && p.reason);
+
+        // Map indicators to flaggedPassages format for display
+        const flaggedPassages = Array.isArray(data.indicators)
+          ? data.indicators.slice(0, 6).map((ind) => ({
+              text: typeof ind === "string" ? ind : String(ind),
+              reason: "Marqueur stylométrique détecté par Claude",
+            }))
+          : [];
+
         return { aiProbability, reasoning, flaggedPassages };
       }
 
@@ -778,9 +501,7 @@ Format strict :
 
       async function extractTextFromFile(file) {
         const ext = (file.name.split(".").pop() || "").toLowerCase();
-        if (ext === "txt") {
-          return await file.text();
-        }
+        if (ext === "txt") return await file.text();
         if (ext === "docx" || ext === "doc") {
           const buffer = await file.arrayBuffer();
           const result = await window.mammoth.extractRawText({ arrayBuffer: buffer });
@@ -794,8 +515,7 @@ Format strict :
           for (let i = 1; i <= pdf.numPages; i++) {
             const page = await pdf.getPage(i);
             const content = await page.getTextContent();
-            const pageText = content.items.map((it) => it.str).join(" ");
-            full += pageText + "\n\n";
+            full += content.items.map((it) => it.str).join(" ") + "\n\n";
           }
           return full.trim();
         }
@@ -817,14 +537,17 @@ Format strict :
         let llm = null;
         let llmAvailable = false;
 
-        if (state.apiKey) {
+        if (state.apiUrl) {
           try {
             setWorkingMsg("Consultation de Claude...");
-            llm = await analyzeWithLlm(cleaned, state.apiKey);
+            llm = await analyzeWithReplit(cleaned, state.apiUrl);
             llmAvailable = true;
           } catch (e) {
             console.error(e);
-            showError("Analyse Claude indisponible : " + e.message + ". Verdict basé sur les heuristiques seules.");
+            showError(
+              "Analyse Claude indisponible : " + e.message +
+              ". Verdict basé sur les heuristiques seules."
+            );
           }
         }
 
@@ -838,9 +561,8 @@ Format strict :
         const confidence = computeConfidence(heuristicScore, llmScore, cleaned.length, llmAvailable);
         const reasoning = llm
           ? llm.reasoning
-          : "Verdict basé uniquement sur l'analyse statistique (variance des phrases, richesse lexicale, ratio de connecteurs, perplexité approximative). Pour une analyse plus profonde, ajoutez votre clé Claude dans les paramètres.";
+          : "Verdict basé uniquement sur l'analyse statistique (variance des phrases, richesse lexicale, ratio de connecteurs, perplexité approximative). Pour une analyse plus profonde, configurez l'URL de l'API Claude dans les paramètres.";
         const summary = buildSummary(verdict, aiProbability, reasoning);
-
         const textPreview = cleaned.length > 600 ? cleaned.slice(0, 600) + "…" : cleaned;
 
         state.result = {
@@ -936,7 +658,6 @@ Format strict :
           const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
           document.getElementById("file-meta").textContent =
             formatBytes(file.size) + " · " + wordCount.toLocaleString("fr-FR") + " mots";
-
           if (text.trim().length < 50) {
             setWorking(false);
             showError("Le document ne contient pas assez de texte exploitable (moins de 50 caractères).");
@@ -987,10 +708,7 @@ Format strict :
       });
       window.addEventListener("dragleave", () => {
         dragCounter--;
-        if (dragCounter <= 0) {
-          dragCounter = 0;
-          hideDropOverlay();
-        }
+        if (dragCounter <= 0) { dragCounter = 0; hideDropOverlay(); }
       });
       window.addEventListener("dragover", (e) => e.preventDefault());
       window.addEventListener("drop", (e) => {
@@ -1031,9 +749,9 @@ Format strict :
 
       // Settings modal
       const settingsModal = document.getElementById("settings-modal");
-      const apiKeyInput = document.getElementById("api-key-input");
+      const apiUrlInput = document.getElementById("api-url-input");
       function openSettings() {
-        apiKeyInput.value = state.apiKey;
+        apiUrlInput.value = state.apiUrl;
         settingsModal.classList.remove("hidden");
         settingsModal.classList.add("flex");
       }
@@ -1047,53 +765,53 @@ Format strict :
         if (e.target === settingsModal) closeSettings();
       });
       document.getElementById("settings-save").addEventListener("click", () => {
-        const key = apiKeyInput.value.trim();
-        state.apiKey = key;
-        if (key) localStorage.setItem("detectai_anthropic_key", key);
-        else localStorage.removeItem("detectai_anthropic_key");
+        const url = apiUrlInput.value.trim();
+        state.apiUrl = url;
+        if (url) localStorage.setItem("detectai_api_url", url);
+        else localStorage.removeItem("detectai_api_url");
         updateLlmBadge();
         closeSettings();
       });
       document.getElementById("settings-clear").addEventListener("click", () => {
-        apiKeyInput.value = "";
-        state.apiKey = "";
-        localStorage.removeItem("detectai_anthropic_key");
+        apiUrlInput.value = "";
+        state.apiUrl = "";
+        localStorage.removeItem("detectai_api_url");
         updateLlmBadge();
         closeSettings();
       });
 
       function updateLlmBadge() {
         const badge = document.getElementById("llm-badge");
-        if (state.apiKey) badge.classList.remove("hidden");
+        if (state.apiUrl) badge.classList.remove("hidden");
         else badge.classList.add("hidden");
       }
       updateLlmBadge();
 
       // ===== Render results =====
       const VERDICT_STYLES = {
-        human: { color: "text-emerald-600", gauge: "#10b981", bg: "bg-emerald-50 border-emerald-200" },
-        ai: { color: "text-rose-600", gauge: "#f43f5e", bg: "bg-rose-50 border-rose-200" },
-        mixed: { color: "text-amber-600", gauge: "#f59e0b", bg: "bg-amber-50 border-amber-200" },
-        uncertain: { color: "text-slate-500", gauge: "#94a3b8", bg: "bg-slate-50 border-slate-200" },
+        human:     { color: "text-emerald-600", gauge: "#10b981", bg: "bg-emerald-50 border-emerald-200" },
+        ai:        { color: "text-rose-600",    gauge: "#f43f5e", bg: "bg-rose-50 border-rose-200" },
+        mixed:     { color: "text-amber-600",   gauge: "#f59e0b", bg: "bg-amber-50 border-amber-200" },
+        uncertain: { color: "text-slate-500",   gauge: "#94a3b8", bg: "bg-slate-50 border-slate-200" },
       };
       const VERDICT_ICONS = {
-        human: '<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
-        ai: '<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>',
-        mixed: '<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4a2 2 0 00-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z"/></svg>',
+        human:     '<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+        ai:        '<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>',
+        mixed:     '<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4a2 2 0 00-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z"/></svg>',
         uncertain: '<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
       };
 
       const METRICS_INFO = [
-        { key: "wordCount", label: "Nombre de mots", desc: "Volume total de mots analysés", isFloat: false },
-        { key: "sentenceCount", label: "Nombre de phrases", desc: "Volume total de phrases", isFloat: false },
-        { key: "avgSentenceLength", label: "Long. moy. des phrases", desc: "L'IA tend vers une longueur uniforme (~15-20 mots)", isFloat: true },
-        { key: "sentenceLengthVariance", label: "Variance de longueur", desc: "Un score bas indique un rythme artificiel", isFloat: true },
-        { key: "burstinessScore", label: "Score de Burstiness", desc: "Variation du rythme. Bas = typique de l'IA", isFloat: true },
-        { key: "vocabularyRichness", label: "Richesse lexicale", desc: "Diversité du vocabulaire. L'IA est souvent répétitive", isFloat: true },
-        { key: "avgWordLength", label: "Long. moy. des mots", desc: "Indicateur de complexité lexicale", isFloat: true },
-        { key: "rareWordRatio", label: "Ratio de mots rares", desc: "L'IA utilise moins de termes rares ou de niche", isFloat: true },
-        { key: "transitionWordRatio", label: "Mots de transition", desc: "L'IA surutilise 'cependant', 'en outre', etc.", isFloat: true },
-        { key: "perplexityProxy", label: "Proxy de perplexité", desc: "Prévisibilité du texte. Bas = généré par IA", isFloat: true },
+        { key: "wordCount",              label: "Nombre de mots",       desc: "Volume total de mots analysés",                                   isFloat: false },
+        { key: "sentenceCount",          label: "Nombre de phrases",    desc: "Volume total de phrases",                                          isFloat: false },
+        { key: "avgSentenceLength",      label: "Long. moy. des phrases", desc: "L'IA tend vers une longueur uniforme (~15-20 mots)",             isFloat: true  },
+        { key: "sentenceLengthVariance", label: "Variance de longueur", desc: "Un score bas indique un rythme artificiel",                       isFloat: true  },
+        { key: "burstinessScore",        label: "Score de Burstiness",  desc: "Variation du rythme. Bas = typique de l'IA",                       isFloat: true  },
+        { key: "vocabularyRichness",     label: "Richesse lexicale",    desc: "Diversité du vocabulaire. L'IA est souvent répétitive",            isFloat: true  },
+        { key: "avgWordLength",          label: "Long. moy. des mots",  desc: "Indicateur de complexité lexicale",                               isFloat: true  },
+        { key: "rareWordRatio",          label: "Ratio de mots rares",  desc: "L'IA utilise moins de termes rares ou de niche",                   isFloat: true  },
+        { key: "transitionWordRatio",    label: "Mots de transition",   desc: "L'IA surutilise 'cependant', 'en outre', etc.",                    isFloat: true  },
+        { key: "perplexityProxy",        label: "Proxy de perplexité",  desc: "Prévisibilité du texte. Bas = généré par IA",                     isFloat: true  },
       ];
 
       function gaugeSvg(percentage, color) {
@@ -1127,32 +845,32 @@ Format strict :
 
         const flaggedHtml = r.flaggedPassages.length
           ? `<div class="max-h-[250px] overflow-y-auto p-6 space-y-4">
-              ${r.flaggedPassages
-                .map(
-                  (p) => `
+              ${r.flaggedPassages.map((p) => `
                 <div class="text-sm bg-rose-50/80 border border-rose-100 p-3 rounded-md relative overflow-hidden">
                   <div class="absolute left-0 top-0 bottom-0 w-1 bg-rose-300"></div>
                   <div class="font-serif italic text-slate-800 mb-2 pl-2">"${escapeHtml(p.text)}"</div>
                   <div class="text-xs text-rose-700 font-bold pl-2">${escapeHtml(p.reason)}</div>
-                </div>`,
-                )
-                .join("")}
+                </div>`).join("")}
             </div>`
           : `<div class="text-sm text-slate-500 italic text-center py-10 px-6">${
               r.llmAvailable
-                ? "Aucun passage n'a été spécifiquement isolé comme artificiel."
-                : "Activez Claude dans les paramètres pour obtenir une analyse passage par passage."
+                ? "Aucun indicateur n'a été spécifiquement isolé comme artificiel."
+                : "Configurez l'URL de l'API Claude dans les paramètres pour obtenir une analyse approfondie."
             }</div>`;
 
         wrapper.innerHTML = `
           <div class="flex justify-between items-center bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
             <h3 class="text-lg font-bold flex items-center gap-2">
-              <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+              <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+              </svg>
               Rapport d'analyse
               ${state.file ? `<span class="ml-2 text-sm font-normal text-slate-500 truncate max-w-xs">— ${escapeHtml(state.file.name)}</span>` : ""}
             </h3>
             <button id="reset-btn" class="font-mono text-xs uppercase tracking-wider px-3 py-1.5 border border-slate-300 hover:bg-slate-50 rounded-md flex items-center">
-              <svg class="w-3.5 h-3.5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+              <svg class="w-3.5 h-3.5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+              </svg>
               Nouvelle analyse
             </button>
           </div>
@@ -1203,20 +921,22 @@ Format strict :
                 <div class="h-px bg-slate-100"></div>
                 <div>
                   <div class="flex justify-between text-sm mb-2">
-                    <span class="font-bold text-slate-700">Évaluation par modèle de langage ${r.llmAvailable ? "" : '<span class="text-slate-400 font-normal">(non activée)</span>'}</span>
+                    <span class="font-bold text-slate-700">
+                      Évaluation par Claude ${r.llmAvailable ? "" : '<span class="text-slate-400 font-normal">(non configurée)</span>'}
+                    </span>
                     <span class="font-mono font-bold ${r.llmAvailable ? "" : "text-slate-300"}">${r.llmAvailable ? r.llmScore + "/100" : "—"}</span>
                   </div>
                   <div class="h-3 bg-slate-100 rounded-full overflow-hidden">
                     <div class="h-full bg-blue-600 rounded-full transition-all duration-1000" style="width: ${r.llmAvailable ? r.llmScore : 0}%"></div>
                   </div>
-                  <p class="text-xs text-slate-500 mt-2">${r.llmAvailable ? "Analyse sémantique profonde par Claude." : "Ajoutez votre clé Anthropic dans les paramètres pour l'activer."}</p>
+                  <p class="text-xs text-slate-500 mt-2">${r.llmAvailable ? "Analyse sémantique profonde par Claude via l'API Replit." : "Configurez l'URL de l'API dans les paramètres pour activer Claude."}</p>
                 </div>
               </div>
             </div>
 
             <div class="bg-white border border-slate-200 rounded-xl shadow-sm">
               <div class="border-b border-slate-100 bg-slate-50/50 p-4">
-                <h4 class="text-sm uppercase tracking-wider text-slate-500 font-bold">Passages flagrants (${r.flaggedPassages.length})</h4>
+                <h4 class="text-sm uppercase tracking-wider text-slate-500 font-bold">Indicateurs détectés par Claude (${r.flaggedPassages.length})</h4>
               </div>
               ${flaggedHtml}
             </div>
@@ -1242,7 +962,9 @@ Format strict :
           <details class="bg-white border border-slate-200 rounded-lg shadow-sm">
             <summary class="px-6 py-4 hover:bg-slate-50 text-sm font-bold text-slate-700 flex justify-between items-center">
               <span>Afficher l'extrait analysé (${r.textLength} caractères)</span>
-              <svg class="chevron w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              <svg class="chevron w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
             </summary>
             <div class="px-6 pb-6">
               <div class="bg-slate-50 p-5 rounded-md text-sm font-serif text-slate-700 leading-relaxed border border-slate-200 whitespace-pre-wrap shadow-inner">${escapeHtml(r.textPreview)}${r.textLength > r.textPreview.length ? '<span class="text-slate-400"> [...]</span>' : ""}</div>
